@@ -16,9 +16,9 @@ var __extends = (this && this.__extends) || (function () {
 var ASlotMachine = /** @class */ (function () {
     function ASlotMachine() {
         this.rtpRates = {
-            jackpot: 50,
-            threeOfKind: 10,
-            twoOfKind: 2,
+            jackpot: 43,
+            threeOfKind: 7,
+            twoOfKind: 3,
         };
         this.profit = 0;
         this.totalWinCount = 0;
@@ -28,7 +28,6 @@ var ASlotMachine = /** @class */ (function () {
         this.playedCount = 0;
         this.investAmt = 0;
         this.returnAmt = 0;
-        //   abstract rtpEvaluator(): number;
     }
     return ASlotMachine;
 }());
@@ -50,6 +49,8 @@ var SlotMachine = /** @class */ (function (_super) {
         result.companyProfit = nresult;
         // @ts-ignore
         console.log(result);
+        var r = _this.rtpEvaluator();
+        console.log(r);
         return _this;
     }
     SlotMachine.prototype.randomValueGenerator = function () {
@@ -92,6 +93,9 @@ var SlotMachine = /** @class */ (function (_super) {
     };
     SlotMachine.prototype.houseProfit = function (invst, rtrn) {
         return invst - rtrn;
+    };
+    SlotMachine.prototype.rtpEvaluator = function () {
+        return this.returnAmt / this.investAmt;
     };
     return SlotMachine;
 }(ASlotMachine));

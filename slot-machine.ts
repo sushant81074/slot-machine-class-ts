@@ -17,9 +17,9 @@ interface ISpinResult {
 
 abstract class ASlotMachine {
   rtpRates: IRtp = {
-    jackpot: 50,
-    threeOfKind: 10,
-    twoOfKind: 2,
+    jackpot: 43,
+    threeOfKind: 7,
+    twoOfKind: 3,
   };
 
   protected profit: number = 0;
@@ -40,7 +40,7 @@ abstract class ASlotMachine {
   abstract randomValueGenerator(): number;
   abstract spin(): object;
   abstract houseProfit(x: number, y: number): number;
-  //   abstract rtpEvaluator(): number;
+  abstract rtpEvaluator(): number;
 }
 
 class SlotMachine extends ASlotMachine {
@@ -65,6 +65,9 @@ class SlotMachine extends ASlotMachine {
     // @ts-ignore
 
     console.log(result);
+
+    let r: number = this.rtpEvaluator();
+    console.log(r);
   }
 
   randomValueGenerator(): number {
@@ -116,6 +119,10 @@ class SlotMachine extends ASlotMachine {
 
   houseProfit(invst: number, rtrn: number): number {
     return invst - rtrn;
+  }
+
+  rtpEvaluator(): number {
+    return this.returnAmt / this.investAmt;
   }
 }
 
